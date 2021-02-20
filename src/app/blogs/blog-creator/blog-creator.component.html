@@ -1,0 +1,28 @@
+<section fxLayoutAlign="center center" style="width: 100%">
+    <mat-card fxFlex="80%" class="mat-elevation-z8">
+        <form fxLayout="column" [formGroup]="newBlogForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Content</mat-label>
+                <textarea matInput rows="6" formControlName="content"></textarea>
+            </mat-form-field>
+            <div>
+                <button mat-button type="button" (click)="inputFile.click()">Choose file</button>
+                <mat-form-field *ngIf="fileName != '' && fileName">
+                    <input matInput [value]="fileName" disabled>
+                </mat-form-field>
+                <input type="file" style="visibility: hidden;" #inputFile (change)="onFileChange($event)">
+            </div>
+            <div *ngIf="imagePreview !== '' && imagePreview">
+                <img alt="newBlogForm.title" [src]="imagePreview" style="width: 100%; height: auto;">
+            </div>
+            <div fxLayout fxLayoutGap="5px" fxLayoutAlign="center center">
+                <button mat-raised-button type="submit" color="primary">Save</button>
+                <button mat-raised-button type="button" color="accent" (click)="onClear()">Clear</button>
+            </div>
+        </form>
+    </mat-card>
+</section>

@@ -1,0 +1,21 @@
+<mat-accordion style="display:block; max-width: 80%; margin: auto;">
+  <span *ngIf="blogs && blogs.length === 0" style="margin: auto;">No blogs added yet!</span>
+  <mat-expansion-panel *ngFor="let blog of blogs" style="margin-top: 5px;">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{blog.title}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>{{blog.content}}</p>
+    <mat-card>
+      <mat-card-content>
+        <img [src]="blog.imagePath" [alt]="blog.title" style="width: 100%; height: auto;">
+      </mat-card-content>
+    </mat-card>
+    <mat-action-row *ngIf="authStatus && blog.userId === userId">
+      <button mat-button color="primary" (click)="onEdit(blog.id)">Edit</button>
+      <button mat-button color="warn" (click)="onDelete(blog.id)">Delete</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pagesizeOptions" (page)="onPageChange($event)"></mat-paginator>
+</mat-accordion>

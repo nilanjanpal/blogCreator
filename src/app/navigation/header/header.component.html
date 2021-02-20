@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+    <a routerLink="/" style="text-decoration: none; color: white">Blog Maker</a>
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+        <a mat-button routerLink="/create" *ngIf="authStatus">Create New</a>
+        <a mat-button routerLink="/login" *ngIf="!authStatus">Login</a>
+        <a mat-button routerLink="/signup" *ngIf="!authStatus">Sign Up</a>
+        <a mat-button (click)="onLogout()" *ngIf="authStatus">Logout</a>
+    </div>
+</mat-toolbar>
